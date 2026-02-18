@@ -1,40 +1,96 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Доступна форма реєстрації</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accessible Form UI</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <main class="container">
+    <form class="form" aria-labelledby="form-title" novalidate>
+      <h1 id="form-title" class="visually-hidden">Update Profile</h1>
 
-<main class="container">
-    <h1>Створити акаунт</h1>
-    
-    <form id="signup-form" novalidate>
-        <div class="form-group">
-            <label for="name">Повне ім'я <span class="required-indicator" aria-hidden="true">*</span></label>
-            <input type="text" id="name" name="name" aria-required="true" aria-describedby="name-error">
-            <span id="name-error" class="error-message" aria-live="polite"></span>
+      <div class="field">
+        <label for="fullName">Full Name</label>
+        <input
+          id="fullName"
+          name="fullName"
+          type="text"
+          placeholder="What should we call you?"
+        />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          value="john@doe.com"
+          aria-describedby="email-error"
+          aria-invalid="true"
+        />
+        <p id="email-error" class="error" role="alert">
+          Email is already taken
+        </p>
+      </div>
+
+      <div class="field password">
+        <label for="password">Enter Password</label>
+        <div class="password-wrapper">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="xxxxxxxx"
+          />
+          <button
+            type="button"
+            class="toggle"
+            aria-label="Toggle password visibility"
+          >👁</button>
         </div>
+      </div>
 
-        <div class="form-group">
-            <label for="email">Електронна пошта <span class="required-indicator" aria-hidden="true">*</span></label>
-            <input type="email" id="email" name="email" aria-required="true" aria-describedby="email-error">
-            <span id="email-error" class="error-message" aria-live="polite"></span>
+      <div class="field password">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="password-wrapper">
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            placeholder="xxxxxxxx"
+          />
+          <button
+            type="button"
+            class="toggle"
+            aria-label="Toggle password visibility"
+          >👁</button>
         </div>
+      </div>
 
-        <div class="form-group">
-            <label for="password">Пароль <span class="required-indicator" aria-hidden="true">*</span></label>
-            <input type="password" id="password" name="password" aria-required="true" aria-describedby="password-help password-error">
-            <span id="password-help" class="help-text">Мінімум 8 символів.</span>
-            <span id="password-error" class="error-message" aria-live="polite"></span>
-        </div>
-
-        <button type="submit" class="submit-btn">Зареєструватися</button>
+      <button type="submit" class="submit">
+        Update Profile
+      </button>
     </form>
-</main>
 
-<script src="script.js"></script>
+    <aside class="progress" aria-label="Profile completeness">
+      <div class="circle" role="img" aria-label="Profile completeness 65%">
+        <span>65%</span>
+      </div>
+
+      <h2>Profile Completeness</h2>
+      <ul>
+        <li class="done">Create Account</li>
+        <li class="done">Update Roadmap Progress</li>
+        <li class="done">Setup Public Profile</li>
+        <li>Complete your first project</li>
+        <li>Invite your Friends</li>
+      </ul>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
